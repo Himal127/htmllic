@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+	
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<title>LIC Seeding App</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+		<link rel="stylesheet" th:href="@{/min.css}">
+		
+		<!-- Optional theme -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+		<link rel="stylesheet" th:href="@{/theme.css}">
+		
+		<!-- Custom Theme -->
+		<link rel="stylesheet" th:href="@{/custom.css}">
+		<link rel="stylesheet"  th:href="@{/ui.css}">
+	
+	</head>
+	<body onload="refreshCaptcha()">
+	
+	<div class="loaderDiv" style="display: none">
+		<div class="loader">
+			<img src="" th:src="ajax-loading.gif" alt="LOADER"/>
+		</div>
+	</div>
+
+	<div class="container">
+	
+		<div class="col-xs-12" id="inputPanel">
+			<div class="panel panel-primary margin-top-20">
+				<div class="panel-heading">
+					<div class="row">
+						<table class="table-responsive">
+						<tr>
+							<td>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+								<img class="img-responsive" src="" th:src="nlicLOGO.jpg" alt="IMG-RESPONSIVE">
+								</div>
+							</td>
+							<td>
+								<div class="col-xs-12">
+								<span><strong class="padding-40">Link PAN With Your Policy</strong><br>
+								<!-- <h5>(As per Government directives it is mandatory to link by 31st March, 2018)</h5> --></span>
+								</div>	
+							</td>
+						</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="panel-body">
+					<form id="aadhaarSeedingRequestForm" class="borderedForm" name="aadhaarSeedingRequestForm">
+						<!-- <div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6">
+								<label>Full Name As Per Aadhaar</label>
+								<input type="text" maxlength="100" placeholder="Full Name As Per Aadhaar" class="form-control" id="fullName" name="fullName" required="required">
+							</div>
+						</div> -->
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6 ui-datepicker-div">
+								<label>Date Of Birth(dd/mm/yyyy) as per PAN</label>
+								<input type="text" placeholder="Date Of Birth(dd/mm/yyyy) as per PAN" class="form-control" id="dob" name="dob" required="required">
+							</div>
+						</div>
+						
+						<!-- <div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6">
+								<label>Name of Father/Spouse</label>
+								<input type="text" maxlength="60" placeholder="Name of Father/Spouse" class="form-control" id="fatherName" name="fatherName" required="required">
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6">
+								<label>Type of Input you want</label>
+							</div>
+						</div>
+							
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-12 col-md-12">
+							    <label class="radio-inline">
+                				<input type="radio" name="inputType" value="0" onclick="disableVIDOrAadhaarField()" checked="checked"/>
+                  				Aadhaar Number</label>
+          					
+            					<label class="radio-inline">
+              					<input type="radio" name="inputType" value="2" onclick="disableVIDOrAadhaarField()" />
+              					Virtual ID</label>
+          					</div>
+  						</div>	
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6">
+								<label>Aadhaar Number</label>
+								<input type="text" maxlength="12" placeholder="Aadhaar Number" class="form-control" id="aadhaarNumber" name="aadhaarNumber" required="required">
+							</div>
+						</div>
+						
+						<div class="row">
+  						<div class="form-group col-xs-12 col-sm-6 col-md-6">
+      							<label>Virtual ID</label>
+				      			<input id="virtualId" type="text" maxlength="16" class="form-control" name="virtualId"  id="virtualId" placeholder="Virtual ID" required="required" disabled="disabled">
+				      		</div>
+						</div> -->
+						
+						<div class="row">
+							<label class="padding-left-15">Gender</label>
+							<div class="form-group col-xs-12 col-sm-12 col-md-12">
+								
+								<label class="radio-inline"><input type="radio" name="gender" checked="checked" value="Male">Male</label>
+								<label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
+								<label class="radio-inline"><input type="radio" name="gender" value="Other">Other</label>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6">
+								<label>Email Id</label>
+								<input type="email" placeholder="Email Id" class="form-control" id="emailId" name="emailId" required="required">
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6">
+								<label>PAN</label>
+								<input type="text" maxlength="10" placeholder="PAN" class="form-control" id="pan" name="pan" required="required">
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-6 col-md-6">
+								<label>Full Name As Per PAN</label>
+								<input type="text" maxlength="100" placeholder="Full Name As Per PAN" class="form-control" id="fullName" name="fullName" required="required">
+							</div>
+						</div>
+						
+						<div class="row">
+							<label class="padding-left-15">Mobile Number</label>
+							<div class="input-group col-xs-12 col-sm-6 col-md-6 form-group inputGroupSpanPadding">
+								<span class="input-group-addon">+91</span>
+								<input type="text" maxlength="10" placeholder="Mobile Number" class="form-control" id="mobileNumber" name="mobileNumber" required="required">							
+							</div>
+						</div>
+						
+						<div class="row">
+							<label class="padding-left-15">Policy Number (Please click Add Policy once you enter policy number)</label>
+							<div class="input-group form-group col-xs-12 col-sm-6 col-md-6 inputGroupSpanPadding">
+								<input type="text" maxlength="9" placeholder="Policy Number" class="form-control" id="policyNumber" name="policyNumber" required="required">
+								<span class="input-group-btn"><button type="button" id="addPolicyButton" class="btn btn-primary">Add Policy</button></span>
+							</div>
+						</div>
+						<div class="row">
+							<ul id="policyList" class="thumbnails list-unstyled">
+								
+							</ul>
+						</div>
+						<input type="hidden" id="policyNumbers" name="policyNumbers"/>
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-12 col-md-12" id="seedingConsentCheckbox">
+								<label><input type="checkbox" id="isConsented" name="isConsented" value="true"> I hereby submit my PAN as issued by Income Tax Department, Government of India and voluntarily give my consent to link my PAN to all my LIC Policies mentioned above. I also give consent for verification of my PAN with Income Tax Department through DigiLocker. LIC of India has informed me that my PAN details would only be used for validation, e-KYC purpose and for all service aspects related to LIC of India. I will not hold LIC of India or any of its officials responsible in case of any incorrect information provided by me.<br>
+								I also authorize LIC to use my mobile number and email id as mentioned above for sending communications.</label>
+							</div>
+						</div>
+						
+						<div class="row">
+						<div class="form-group col-xs-12 col-sm-4 col-md-4">
+							<input type="text" placeholder="Enter Captcha Here" class="form-control" id="captchaText" name="captchaText" required="required">
+						</div>
+						<div>
+						     
+						      <form action="?" method="POST">
+						      <div class="g-reCAPTCHA" data-sitekey="your_site_key">  
+						    <br/>      <input type="submit" value="Submit">    </form>  </div></div>
+						<div class="form-group col-xs-1 col-sm-1 col-md-1">
+							<img id="captchaRefreshImage" src="" th:src="refreshCaptcha.png" title="Refresh Captcha" onclick="refreshCaptcha()">
+						</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-12 col-md-12">
+								<button type="submit" id="seedRequestSubmitButton" class="btn btn-primary" disabled="disabled" title="Please provide your consent by ticking the checkbox">Get OTP</button>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-xs-12 col-sm-12 col-md-12">
+								<i>Note:- Please provide your consent by ticking the checkbox above to proceed further.</i>
+							</div>
+						</div>
+					</form>
+					<form id="redirectForm" action="redirect" method="POST">
+						<input type="hidden" id="redirectpagename" name="redirectpagename" value="validateOTP" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div
+				class="alert alert-danger alert-dismissable collapse text-center col-xs-12 col-sm-4 col-md-4"
+				id="aadhaarSeedingRequestAlert">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Error!</strong>
+			</div>
+		</div>
+	</div>
+
+	<script th:src="@{/jquery-3.1.1.min.js}"></script>
+	<script th:src="@{/bootstrap.min.js}"></script>
+	<script th:src="@{/jquery-ui.min.js}"></script>
+	<script type='text/javascript' th:src="@{/aadhaarValidation.js}"></script>
+	<script type='text/javascript' th:src="@{/custom.js}"></script>
+	</body>
+</html>

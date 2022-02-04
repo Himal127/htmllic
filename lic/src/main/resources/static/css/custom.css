@@ -1,0 +1,67 @@
+.margin-top-20 {
+	margin-top: 15px;
+}
+
+.borderedForm {
+	border: 1px solid #ccc;
+	border-radius: 5%;
+	padding: 40px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19) !important;
+}
+
+.ui-datepicker-div { 
+	z-index: 999999; 
+}
+
+.inputGroupSpanPadding {
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+}
+
+.padding-40 {
+	padding: 40px;
+}
+
+.padding-15 {
+	padding: 15px;
+}
+
+.padding-left-15 {
+	padding-left: 15px;
+}
+
+#redirectForm {
+	display: none;
+}
+
+.panel-heading {
+	font-size: 18px;
+}
+
+.loaderDiv {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: Black;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    -moz-opacity: 0.8;
+}
+.loader {
+    z-index: 1000;
+    margin: 300px auto;
+    padding: 10px;
+    width: 130px;
+    background-color: White;
+    border-radius: 10px;
+    filter: alpha(opacity=100);
+    opacity: 1;
+    -moz-opacity: 1;
+}
+.loader img {
+    height: 128px;
+    width: 128px;
+}
